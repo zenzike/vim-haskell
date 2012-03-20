@@ -15,6 +15,20 @@ setlocal comments=s1fl:{-,mb:-,ex:-},:-- commentstring=--\ %s
 setlocal formatoptions-=t formatoptions+=croql
 setlocal makeprg=lhs2TeX\ %\ >\ %<.tex\ &&\ rubber\ -d\ %<.tex
 
+"" Snipmate completions
+if !exists("g:haskell_tex")
+  let g:haskell_tex = 1
+endif
+if !exists("g:haskell_unicode")
+  let g:haskell_unicode = 1
+endif
+if g:haskell_tex
+  set filetype+=.haskell-tex
+endif
+if g:haskell_unicode
+  set filetype+=.haskell-unicode
+endif
+
 if exists('b:undo_ftplugin')
   let b:undo_ftplugin .= "|setl cms< com< fo< flp<"
 else
