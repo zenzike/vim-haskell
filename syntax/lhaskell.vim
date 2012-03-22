@@ -1,19 +1,12 @@
 " Vim syntax file
-" Language:              Haskell with literate comments, Bird style,
-"                        TeX style and plain text surrounding
-"                        \begin{code} \end{code} blocks
-" Maintainer:            Haskell Cafe mailinglist <haskell-cafe@haskell.org>
-" Original Author:       Arthur van Leeuwen <arthurvl@cs.uu.nl>
-" Last Change:           2009 May 08
-" Version:               1.05
+" Language:          Literate Haskell
+" URL:               http://github.com/zenzike/vim-haskell
+" Version:           1.5
 "
-" Thanks to Ian Lynagh for thoughtful comments on initial versions and
-" for the inspiration for writing this in the first place.
-"
-" This style guesses as to the type of markup used in a literate haskell
-" file and will highlight (La)TeX markup if it finds any
-" This behaviour can be overridden, both glabally and locally using
-" the lhs_markup variable or b:lhs_markup variable respectively.
+" This style guesses as to the type of markup used in a literate haskell file
+" and will highlight (La)TeX markup if it finds any. This behaviour can be
+" overridden, both glabally and locally using the lhs_markup variable or
+" b:lhs_markup variable respectively.
 "
 " lhs_markup         must be set to either tex or none to indicate that
 "                    you always want (La)TeX highlighting or no highlighting
@@ -22,20 +15,6 @@
 "                    you want (La)TeX highlighting or no highlighting for
 "                    this particular buffer
 "                    must not be set to let the highlighting be guessed
-"
-"
-" 2004 February 18: New version, based on Ian Lynagh's TeX guessing
-"                   lhaskell.vim, cweb.vim, tex.vim, sh.vim and fortran.vim
-" 2004 February 20: Cleaned up the guessing and overriding a bit
-" 2004 February 23: Cleaned up syntax highlighting for \begin{code} and
-"                   \end{code}, added some clarification to the attributions
-" 2008 July 1:      Removed % from guess list, as it totally breaks plain
-"                   text markup guessing
-" 2009 April 29:    Fixed highlighting breakage in TeX mode,
-"                   thanks to Kalman Noel
-" 2009 May 19:      Added \begin{spec} \end{spec} for lhs2TeX
-"                   Fixed highlighting of { } in code
-"                   (Nicolas Wu)
 
 " For version 5.x: Clear all syntax items
 " For version 6.x: Quit when a syntax file was already loaded
@@ -94,8 +73,8 @@ if b:lhs_markup == "tex"
     " Tex.vim removes "_" from 'iskeyword', but we need it for Haskell.
     setlocal isk+=_
   endif
-  syntax cluster lhsTeXContainer contains=tex.*Zone,texAbstract
-  syntax cluster lhsTeXNoVerb contains=tex.*Zone,texAbstract remove=texZone
+  syntax cluster lhsTeXContainer contains=tex.*
+  syntax cluster lhsTeXNoVerb contains=tex.* remove=texZone
 else
   syntax cluster lhsTeXContainer contains=.*
   syntax cluster lhsTeXNoVerb contains=.*
@@ -110,12 +89,14 @@ else
 endif
 
 syntax region lhsHaskellBirdTrack start="^>" end="\%(^[^>]\)\@=" contains=@haskellTop,lhsBirdTrack containedin=@lhsTeXContainer
+syntax region lhsHaskellBirdTrack start="^<" end="\%(^[^<]\)\@=" contains=@haskellTop,lhsBirdTrack containedin=@lhsTeXContainer
 syntax region lhsHaskellBeginEndBlock start="^\\begin{code}\s*$" end="\%(^\\end{code}.*$\)\@=" contains=@haskellTop,@beginCode containedin=@lhsTeXContainer
 syntax region lhsHaskellBeginEndBlock start="^\\begin{spec}\s*$" end="\%(^\\end{spec}.*$\)\@=" contains=@haskellTop,@beginCode containedin=@lhsTeXContainer
 
 syntax region lhsHaskellInline keepend start="\(\\verb\)\@<!|" end="|" contains=@haskellTop containedin=@lhsTeXNoVerb
 
 syntax match lhsBirdTrack "^>" contained
+syntax match lhsBirdTrack "^<" contained
 
 syntax match   beginCodeBegin "^\\begin" nextgroup=beginCodeCode contained
 syntax region  beginCodeCode  matchgroup=texDelimiter start="\%(^\\begin\)\@<={" end="}"
