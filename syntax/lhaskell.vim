@@ -4,8 +4,8 @@
 "			\begin{code} \end{code} blocks
 " Maintainer:		Haskell Cafe mailinglist <haskell-cafe@haskell.org>
 " Original Author:	Arthur van Leeuwen <arthurvl@cs.uu.nl>
-" Last Change:		2010 Apr 11
-" Version:		1.04
+" Last Change:		2009 May 08
+" Version:		1.05
 "
 " Thanks to Ian Lynagh for thoughtful comments on initial versions and
 " for the inspiration for writing this in the first place.
@@ -33,7 +33,9 @@
 "                   text markup guessing
 " 2009 April 29:    Fixed highlighting breakage in TeX mode, 
 "                   thanks to Kalman Noel
-"
+" 2009 May 19:      Added \begin{spec} \end{spec} for lhs2TeX
+"                   Fixed highlighting of { } in code
+"                   (Nicolas Wu)
 
 
 " For version 5.x: Clear all syntax items
@@ -94,8 +96,10 @@ if b:lhs_markup == "tex"
 	setlocal isk+=_
     endif
     syntax cluster lhsTeXContainer contains=tex.*Zone,texAbstract
+    syntax cluster lhsTeXNoVerb contains=tex.*Zone,texAbstract remove=texZone
 else
     syntax cluster lhsTeXContainer contains=.*
+    syntax cluster lhsTeXNoVerb contains=.*
 endif
 
 " Literate Haskell is Haskell in between text, so at least read Haskell
@@ -107,12 +111,16 @@ else
 endif
 
 syntax region lhsHaskellBirdTrack start="^>" end="\%(^[^>]\)\@=" contains=@haskellTop,lhsBirdTrack containedin=@lhsTeXContainer
-syntax region lhsHaskellBeginEndBlock start="^\\begin{code}\s*$" matchgroup=NONE end="\%(^\\end{code}.*$\)\@=" contains=@haskellTop,beginCodeBegin containedin=@lhsTeXContainer
+syntax region lhsHaskellBeginEndBlock start="^\\begin{code}\s*$" end="\%(^\\end{code}.*$\)\@=" contains=@haskellTop,@beginCode containedin=@lhsTeXContainer
+syntax region lhsHaskellBeginEndBlock start="^\\begin{spec}\s*$" end="\%(^\\end{spec}.*$\)\@=" contains=@haskellTop,@beginCode containedin=@lhsTeXContainer
+
+syntax region lhsHaskellInline keepend start="\(\\verb\)\@<!|" end="|" contains=@haskellTop containedin=@lhsTeXNoVerb
 
 syntax match lhsBirdTrack "^>" contained
 
 syntax match beginCodeBegin "^\\begin" nextgroup=beginCodeCode contained
-syntax region beginCodeCode  matchgroup=texDelimiter start="{" end="}"
+syntax region beginCodeCode  matchgroup=texDelimiter start="\%(^\\begin\)\@<={" end="}"
+syntax cluster beginCode    contains=beginCodeBegin,beginCodeCode
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
