@@ -154,7 +154,7 @@ if version >= 508 || !exists("did_hs_syntax_inits")
     HiLink hsDelimiter			  Delimiter
   endif
   HiLink hsSpecialCharError		  Error
-  HiLink hsString			  Number
+  HiLink hsString			  String
   HiLink hsCharacter			  Character
   HiLink hsNumber			  Number
   HiLink hsFloat			  Float
