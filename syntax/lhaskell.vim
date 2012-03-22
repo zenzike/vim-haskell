@@ -55,7 +55,7 @@ call cursor(1,1)
 "   - \begin{env}       (for env != code)
 "   - \part, \chapter, \section, \subsection, \subsubsection, etc
 if b:lhs_markup == "unknown"
-  if search('\\documentclass\|\\begin{\(code}\)\@!\|\\\(sub\)*section\|\\chapter|\\part','W') != 0
+  if search('\\documentclass\|\\begin{\%(code}\)\@!\|\\\%(sub\)*section\|\\chapter|\\part','W') != 0
     let b:lhs_markup = "tex"
   else
     let b:lhs_markup = "plain"
@@ -88,12 +88,12 @@ else
   syntax include @haskellTop syntax/haskell.vim
 endif
 
-syntax region lhsHaskellBirdTrack start="^>" end="\%(^[^>]\)\@=" contains=@haskellTop,lhsBirdTrack containedin=@lhsTeXContainer
-syntax region lhsHaskellBirdTrack start="^<" end="\%(^[^<]\)\@=" contains=@haskellTop,lhsBirdTrack containedin=@lhsTeXContainer
-syntax region lhsHaskellBeginEndBlock start="^\\begin{code}\s*$" end="\%(^\\end{code}.*$\)\@=" contains=@haskellTop,@beginCode containedin=@lhsTeXContainer
-syntax region lhsHaskellBeginEndBlock start="^\\begin{spec}\s*$" end="\%(^\\end{spec}.*$\)\@=" contains=@haskellTop,@beginCode containedin=@lhsTeXContainer
+syntax region lhsHaskellBirdTrack start="^>" end="$" contains=@haskellTop,lhsBirdTrack containedin=@lhsTeXContainer
+syntax region lhsHaskellBirdTrack start="^<" end="$" contains=@haskellTop,lhsBirdTrack containedin=@lhsTeXContainer
+syntax region lhsHaskellBeginEndBlock start="^\\begin{code}\s*$" end="\%(^\\end{code}\)\@=" contains=@haskellTop,@beginCode containedin=@lhsTeXContainer
+syntax region lhsHaskellBeginEndBlock start="^\\begin{spec}\s*$" end="\%(^\\end{spec}\)\@=" contains=@haskellTop,@beginCode containedin=@lhsTeXContainer
 
-syntax region lhsHaskellInline keepend start="\(\\verb\)\@<!|" end="|" contains=@haskellTop containedin=@lhsTeXNoVerb
+syntax region lhsHaskellInline keepend start="\%(\\verb\)\@<!|" end="|" contains=@haskellTop containedin=@lhsTeXNoVerb
 
 syntax match lhsBirdTrack "^>" contained
 syntax match lhsBirdTrack "^<" contained
