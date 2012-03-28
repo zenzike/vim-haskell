@@ -74,7 +74,7 @@ if b:lhs_markup == "tex"
     setlocal isk+=_
   endif
   syntax cluster lhsTeXContainer contains=tex.*
-  syntax cluster lhsTeXNoVerb contains=tex.* remove=texZone
+  syntax cluster lhsTeXNoVerb contains=tex.* remove=texZone,texComment
 else
   syntax cluster lhsTeXContainer contains=.*
   syntax cluster lhsTeXNoVerb contains=.*
