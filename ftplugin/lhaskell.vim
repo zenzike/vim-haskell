@@ -13,7 +13,8 @@ setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^[-*+]\\s\\+
 
 setlocal comments=s1fl:{-,mb:-,ex:-},:-- commentstring=--\ %s
 setlocal formatoptions-=t formatoptions+=croql
-setlocal makeprg=lhs2TeX\ %\ >\ %<.tex\ &&\ rubber\ -d\ %<.tex
+setlocal makeprg=lhs2TeX\ %\ >\ %<.tex\ &&\ xelatex\ %<.tex
+" setlocal makeprg=lhs2TeX\ %\ >\ %<.tex\ &&\ rubber\ -d\ %<.tex
 
 "" Snipmate completions
 if !exists("g:haskell_tex")
