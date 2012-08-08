@@ -53,9 +53,9 @@ improve your code.
 
 Some snippets are provided that allow unicode symbols to be entered relatively
 easily in insert mode. For example, if your cursor is to the right of an ascii
-'->' arrow, pressing '<TAB>' will result in a unicode '→' arrow. Likewise greek
-letters can be entered by typing the name of the letter and pressing '<TAB>'.
-For example, typing 'psi<TAB>' will result in 'ψ'.
+'->' arrow, pressing '\<TAB\>' will result in a unicode '→' arrow. Likewise greek
+letters can be entered by typing the name of the letter and pressing '\<TAB\>'.
+For example, typing 'psi\<TAB\>' will result in 'ψ'.
 
 
 TODO
