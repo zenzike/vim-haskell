@@ -36,10 +36,10 @@ the file is a latex file, and, if so, makes use of this.
 
 ### Quickfix
 
-If the current working directory contains a 'cabal' file, then 'makeprg' will be
-set to 'cabal build', and will put the ensuing warning and error messages into
-the vim quickfix window. If no 'cabal' file is detected, then the current file
-is simply compiled with 'ghc'.
+If the current working directory contains a `cabal` file, then `makeprg` will be
+set to `cabal build` and will put the ensuing warning and error messages into
+the vim quickfix window. If no `cabal` file is detected, then the current file
+is simply compiled with `ghc`
 
 ### Syntastic
 
@@ -53,9 +53,9 @@ improve your code.
 
 Some snippets are provided that allow unicode symbols to be entered relatively
 easily in insert mode. For example, if your cursor is to the right of an ascii
-'->' arrow, pressing '\<TAB\>' will result in a unicode '→' arrow. Likewise greek
-letters can be entered by typing the name of the letter and pressing '\<TAB\>'.
-For example, typing 'psi\<TAB\>' will result in 'ψ'.
+`->` arrow, pressing `<TAB>` will result in a unicode `→` arrow. Likewise greek
+letters can be entered by typing the name of the letter and pressing `<TAB>`.
+For example, typing `psi<TAB>` will result in `ψ`.
 
 
 TODO
