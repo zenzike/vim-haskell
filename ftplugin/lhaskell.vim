@@ -1,4 +1,3 @@
-
 " Vim filetype plugin
 " Language: Literate Haskell
 " Maintainer: Nicolas Wu <nicolas.wu@gmail.com>
