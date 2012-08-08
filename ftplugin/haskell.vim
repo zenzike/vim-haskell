@@ -4,7 +4,7 @@ endif
 let b:did_ftplugin = 1
 let s:cpo_save = &cpo
 set cpo&vim
-let b:undo_ftplugin = "setl mp< com< cms< efm<"
+let b:undo_ftplugin = "setl mp< efm< isk< com< cms<"
 
 " This will set the variables that QuickFix needs
 " in order to compile, if you are on a project that 
@@ -21,6 +21,7 @@ else
   endif
   let &l:makeprg = 'ghc --make % -outputdir ' . b:qfOutputdir
 endif
+
 setl errorformat=
   \%-Z\ %#,
   \%W%f:%l:%c:\ Warning:\ %m,
@@ -30,8 +31,10 @@ setl errorformat=
   \%W%>%f:%l:%c:,
   \%+C\ \ %#%tarning:\ %m,
 
-setlocal comments=s1fl:{-,mb:-,ex:-},:-- 
-setlocal commentstring=--\ %s
+setl iskeyword=a-z,A-Z,_,.,39
+
+setl comments=s1fl:{-,mb:-,ex:-},:-- 
+setl commentstring=--\ %s
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
