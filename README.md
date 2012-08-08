@@ -66,6 +66,47 @@ Here's a list of features which are planned:
 * Allow users to disable features like unicode entry.
 * Use markdown syntax highlighting in lhs files that support it.
 * Detect cabal files and enter an appropriate project mode.
-* Enable proper TAGs.
 * Part of this README should probably become a vimdoc file.
+
+### Tags
+
+There is a myriad of different tag generators for Haskell:
+
+#### ghc
+
+* GHC itself provides tags.
+
+#### hasktags
+
+* [hackage](http://hackage.haskell.org/package/hasktags)
+* [github](https://github.com/chrisdone/hasktags)
+* This used to be distributed with `ghc`.
+
+#### fast-tags
+* [hackage](http://hackage.haskell.org/package/fast-tags),
+* [github](https://github.com/elaforge/fast-tags):
+* Uses its own parser rather than `haskell-src` or `haskell-src-exts`.
+* Handles `.hs` and `.hsc` but not `.lhs`.
+
+#### lushtags
+
+* [hackage](http://hackage.haskell.org/package/lushtags)
+* [github](https://github.com/bitc/lushtags)
+* Integrates with [tagbar](http://majutsushi.github.com/tagbar/).
+
+#### gasbag
+
+* [homepage](http://kingfisher.nfshost.com/sw/gasbag/)
+* Chooses outermost definitions.
+* Only works with valid Haskell files.
+
+#### hothasktags
+
+* [hackage](http://hackage.haskell.org/package/hothasktags)
+* [github](http://github.com/luqui/hothasktags)
+
+Support for at least of one these would be nice.
+
+
+
 
