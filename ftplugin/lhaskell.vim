@@ -1,7 +1,6 @@
 " Vim filetype plugin
 " Language: Literate Haskell
 " Maintainer: Nicolas Wu <nicolas.wu@gmail.com>
-" Latest Revision: 2012-02-21
 
 if exists("b:did_ftplugin")
   finish
