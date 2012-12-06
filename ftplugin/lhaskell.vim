@@ -10,8 +10,10 @@ let b:did_ftplugin = 1
 setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^[-*+]\\s\\+
 
 setlocal comments=s1fl:{-,mb:-,ex:-},:-- commentstring=--\ %s
-setlocal makeprg=lhs2TeX\ %\ >\ %<.tex\ &&\ xelatex\ %<.tex
-" setlocal makeprg=lhs2TeX\ %\ >\ %<.tex\ &&\ rubber\ -d\ %<.tex
+if !filereadable(expand("%:p:h")."/Makefile")
+    setlocal makeprg=lhs2TeX\ %\ >\ %<.tex\ &&\ xelatex\ %<.tex
+    " setlocal makeprg=lhs2TeX\ %\ >\ %<.tex\ &&\ rubber\ -d\ %<.tex
+endif
 
 "" Snipmate completions
 if !exists("g:haskell_tex")
