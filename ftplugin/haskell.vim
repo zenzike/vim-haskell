@@ -31,7 +31,7 @@ setl errorformat=
   \%W%>%f:%l:%c:,
   \%+C\ \ %#%tarning:\ %m,
 
-setl iskeyword=a-z,A-Z,_,.,39
+setl iskeyword=a-z,A-Z,_,.,39,48-57
 
 setl comments=s1fl:{-,mb:-,ex:-},:-- 
 setl commentstring=--\ %s
