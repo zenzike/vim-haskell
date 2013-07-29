@@ -22,7 +22,8 @@ be something along the following lines:
     git clone git://github.com/zenzike/vim-haskell.git
     git clone git://github.com/msanders/snipmate.vim.git
     git clone git://github.com/scrooloose/syntastic.git
-    cabal install ghc-mod
+    cabal install hdevtools
+    cabal install hlint
     cabal install hasktags
 
 Overview
@@ -45,9 +46,16 @@ is simply compiled with `ghc`
 
 Whenever you write to your file,
 [syntastic](https://github.com/scrooloose/syntastic/) is run in order to check
-your syntax. It will also try to run
-[hlint](http://hackage.haskell.org/package/hlint/) and make suggestions to
+your syntax. 
+This works by using both [hdevtools](https://github.com/bitc/hdevtools) and 
+[hlint](http://hackage.haskell.org/package/hlint/) to make suggestions to
 improve your code.
+
+I tend to use only `hdevtools`, but cranked up for all warnings, so this is in my `.vimrc`:
+
+    let g:syntastic_haskell_checkers = ['hdevtools']
+    let g:hdevtools_options = '-g -Wall'
+
 
 ### Unicode Entry
 
