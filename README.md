@@ -101,7 +101,8 @@ There is a myriad of different tag generators for Haskell:
 * [hackage](http://hackage.haskell.org/package/lushtags)
 * [github](https://github.com/bitc/lushtags)
 * Integrates with [tagbar](http://majutsushi.github.com/tagbar/).
-
+* Does not support `.lhs`
+* 
 #### gasbag
 
 * [homepage](http://kingfisher.nfshost.com/sw/gasbag/)
