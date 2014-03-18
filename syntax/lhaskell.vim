@@ -73,11 +73,11 @@ if b:lhs_markup == "tex"
     " Tex.vim removes "_" from 'iskeyword', but we need it for Haskell.
     setlocal isk+=_
   endif
-  syntax cluster lhsTeXContainer contains=@Spell,tex.*
-  syntax cluster lhsTeXNoVerb contains=@Spell,tex.* remove=texZone,texComment
+  syntax cluster lhsTeXContainer contains=@Spell,tex.* remove=hsComment
+  syntax cluster lhsTeXNoVerb contains=@Spell,tex.* remove=texZone,texComment,hsComment
 else
-  syntax cluster lhsTeXContainer contains=.*,@Spell
-  syntax cluster lhsTeXNoVerb contains=.*,@Spell
+  syntax cluster lhsTeXContainer contains=.*,@Spell remove=hsComment
+  syntax cluster lhsTeXNoVerb contains=.*,@Spell remove=hsComment
 endif
 
 " Literate Haskell is Haskell in between text, so at least read Haskell
@@ -95,8 +95,6 @@ syntax region lhsHaskellBirdTrack start="^<" end="$" contains=@haskellTop,lhsBir
 syntax region lhsHaskellBeginEndBlock start="^\\begin{code}\s*$" end="\%(^\\end{code}\)\@=" contains=@haskellTop,@beginCode,@NoSpell containedin=@lhsTeXContainer
 syntax region lhsHaskellBeginEndBlock start="^\\begin{spec}\s*$" end="\%(^\\end{spec}\)\@=" contains=@haskellTop,@beginCode,@NoSpell containedin=@lhsTeXContainer
 
-"TODO: No inlines inside strings. eg. `let x = " | "`, and none in
-"comments either.
 syntax region lhsHaskellInline keepend start="\%(\\verb\)\@<!|" end="|" contains=@haskellTop,@NoSpell containedin=@lhsTeXNoVerb
 
 syntax match lhsBirdTrack "^>" contained

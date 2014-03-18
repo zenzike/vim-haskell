@@ -104,6 +104,7 @@ endif
 syn match   hsLineComment      "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$"
 syn region  hsBlockComment     start="{-"  end="-}" contains=hsBlockComment
 syn region  hsPragma	       start="{-#" end="#-}"
+syn cluster hsComment contains=hsLineComment,hsBlockComment,hsPragma
 
 " C Preprocessor directives. Shamelessly ripped from c.vim and trimmed
 " First, see whether to flag directive-like lines or not
