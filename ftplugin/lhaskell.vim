@@ -11,7 +11,7 @@ setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^[-*+]\\s\\+
 
 setlocal comments=s1fl:{-,mb:-,ex:-},:-- commentstring=--\ %s
 if !filereadable(expand("%:p:h")."/Makefile")
-    setlocal makeprg=lhs2TeX\ %\ >\ %<.tex\ &&\ xelatex\ %<.tex
+    " setlocal makeprg=lhs2TeX\ %\ >\ %<.tex\ &&\ xelatex\ %<.tex
     " setlocal makeprg=lhs2TeX\ %\ >\ %<.tex\ &&\ rubber\ -d\ %<.tex
 endif
 

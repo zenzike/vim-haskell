@@ -73,11 +73,11 @@ if b:lhs_markup == "tex"
     " Tex.vim removes "_" from 'iskeyword', but we need it for Haskell.
     setlocal isk+=_
   endif
-  syntax cluster lhsTeXContainer contains=tex.*
-  syntax cluster lhsTeXNoVerb contains=tex.* remove=texZone,texComment
+  syntax cluster lhsTeXContainer contains=@Spell,tex.*
+  syntax cluster lhsTeXNoVerb contains=@Spell,tex.* remove=texZone,texComment
 else
-  syntax cluster lhsTeXContainer contains=.*
-  syntax cluster lhsTeXNoVerb contains=.*
+  syntax cluster lhsTeXContainer contains=.*,@Spell
+  syntax cluster lhsTeXNoVerb contains=.*,@Spell
 endif
 
 " Literate Haskell is Haskell in between text, so at least read Haskell
@@ -88,19 +88,21 @@ else
   syntax include @haskellTop syntax/haskell.vim
 endif
 
-syntax region lhsHaskellBirdTrack start="^>" end="$" contains=@haskellTop,lhsBirdTrack containedin=@lhsTeXContainer
-syntax region lhsHaskellBirdTrack start="^<" end="$" contains=@haskellTop,lhsBirdTrack containedin=@lhsTeXContainer
-syntax region lhsHaskellBeginEndBlock start="^\\begin{code}\s*$" end="\%(^\\end{code}\)\@=" contains=@haskellTop,@beginCode containedin=@lhsTeXContainer
-syntax region lhsHaskellBeginEndBlock start="^\\begin{spec}\s*$" end="\%(^\\end{spec}\)\@=" contains=@haskellTop,@beginCode containedin=@lhsTeXContainer
+syntax spell toplevel
 
-syntax region lhsHaskellInline keepend start="\%(\\verb\)\@<!|" end="|" contains=@haskellTop containedin=@lhsTeXNoVerb
+syntax region lhsHaskellBirdTrack start="^>" end="$" contains=@haskellTop,lhsBirdTrack,@NoSpell containedin=@lhsTeXContainer
+syntax region lhsHaskellBirdTrack start="^<" end="$" contains=@haskellTop,lhsBirdTrack,@NoSpell containedin=@lhsTeXContainer
+syntax region lhsHaskellBeginEndBlock start="^\\begin{code}\s*$" end="\%(^\\end{code}\)\@=" contains=@haskellTop,@beginCode,@NoSpell containedin=@lhsTeXContainer
+syntax region lhsHaskellBeginEndBlock start="^\\begin{spec}\s*$" end="\%(^\\end{spec}\)\@=" contains=@haskellTop,@beginCode,@NoSpell containedin=@lhsTeXContainer
+
+" syntax region lhsHaskellInline keepend start="\%(\\verb\)\@<!|" end="|" contains=@haskellTop containedin=@lhsTeXNoVerb
 
 syntax match lhsBirdTrack "^>" contained
 syntax match lhsBirdTrack "^<" contained
 
 syntax match   beginCodeBegin "^\\begin" nextgroup=beginCodeCode contained
 syntax region  beginCodeCode  matchgroup=texDelimiter start="\%(^\\begin\)\@<={" end="}"
-syntax cluster beginCode      contains=beginCodeBegin,beginCodeCode
+syntax cluster beginCode      contains=beginCodeBegin,beginCodeCode,@NoSpell
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
