@@ -8,6 +8,7 @@ endif
 let b:did_ftplugin = 1
 
 setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^[-*+]\\s\\+
+setlocal spell
 
 setlocal comments=s1fl:{-,mb:-,ex:-},:-- commentstring=--\ %s
 if !filereadable(expand("%:p:h")."/Makefile")

@@ -76,8 +76,8 @@ if b:lhs_markup == "tex"
   syntax cluster lhsTeXContainer contains=@Spell,tex.* remove=hsComment
   syntax cluster lhsTeXNoVerb contains=@Spell,tex.* remove=texZone,texComment,hsComment
 else
-  syntax cluster lhsTeXContainer contains=.*,@Spell remove=hsComment
-  syntax cluster lhsTeXNoVerb contains=.*,@Spell remove=hsComment
+  syntax cluster lhsTeXContainer contains=@Spell remove=hsComment
+  syntax cluster lhsTeXNoVerb contains=@Spell remove=hsComment
 endif
 
 " Literate Haskell is Haskell in between text, so at least read Haskell
